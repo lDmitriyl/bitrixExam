@@ -12,7 +12,8 @@ $APPLICATION->SetTitle("Простой компонент");
 		"PROPERTY_CODE" => "FIRMA",
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",
-		"CACHE_GROUPS" => "Y"
+		"CACHE_GROUPS" => "Y",
+		"TEMPLATE_DETAIL_URL" => "catalog_exam/#SECTION_ID#/#ELEMENT_CODE#"
 	),
 	false
 );?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

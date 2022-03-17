@@ -20,8 +20,8 @@
                                 <?=$arProduct['NAME']?>
                                 <?=$arProduct['PROPERTIES']['PRICE']['VALUE']?>
                                 <?=$arProduct['PROPERTIES']['ARTNUMBER']['VALUE']?>
-                                <?=$arProduct['PROPERTIES']['MATERIAL']['VALUE']?>
-                                <a href="<?=$arProduct['DETAIL_PAGE_URL']?>">Ссылка на детальный просмотр</a>
+                                <?=$arProduct['PROPERTIES']['MATERIAL']['VALUE']?>-
+                                (<?=$arProduct['DETAIL_PAGE_URL']?>)
                             </li>
                         <?php endforeach;?>
                     </ul>

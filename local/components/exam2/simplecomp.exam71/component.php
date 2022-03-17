@@ -52,12 +52,17 @@ if($this->startResultCache(false, array($USER->GetGroups()))){
 
     // получаем продукты с привязками к фирме
 
+    $arSort = array(
+        'NAME' => 'asc',
+        'SORT' => 'asc'
+    );
+
     $arSelectElems = array (
         "ID",
         "IBLOCK_ID",
         "IBLOCK_SECTION_ID",
-        "NAME",
-        "DETAIL_PAGE_URL"
+        "CODE",
+        "NAME"
     );
     $arFilterElems = array (
         "IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
@@ -66,7 +71,9 @@ if($this->startResultCache(false, array($USER->GetGroups()))){
         "ACTIVE" => "Y"
     );
 
-    $rsElements = CIBlockElement::GetList(array(), $arFilterElems, false, false, $arSelectElems);
+    $rsElements = CIBlockElement::GetList($arSort, $arFilterElems, false, false, $arSelectElems);
+    $rsElements->SetUrlTemplates($arParams['TEMPLATE_DETAIL_URL'] . '.php');
+
     while($arElement = $rsElements->GetNextElement())
     {
         $arField = $arElement->GetFields();

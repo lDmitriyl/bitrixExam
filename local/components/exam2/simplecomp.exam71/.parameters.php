@@ -15,10 +15,11 @@ $arComponentParameters = array(
             "TYPE" => "STRING",
         ),
 
-        "TEMPLATE" => array(
+        "TEMPLATE_DETAIL_URL" => array(
             "NAME" => GetMessage("SIMPLECOMP_EXAM2_TEMPLATE_ID"),
             'PARENT' => 'BASE',
             "TYPE" => "STRING",
+            "DEFAULT" => "catalog_exam/#SECTION_ID#/#ELEMENT_CODE#"
         ),
 
         "PROPERTY_CODE" => array(
