@@ -97,6 +97,19 @@ if($this->startResultCache(false, array($USER->GetGroups(), $cfilter))){
         $arField = $arElement->GetFields();
         $arField['PROPERTIES'] = $arElement->GetProperties();
 
+        $arrButtons = CIBlock::GetPanelButtons(
+            $arParams['PRODUCTS_IBLOCK_ID'],
+            $arField['ID'],
+            0,
+            ['SECTION_BUTTONS' => false, 'SESSID' => false]
+        );
+
+        $arField["EDIT_LINK"] = $arrButtons['edit']['edit_element']['ACTION_URL'];
+        $arField["DELETE_LINK"] = $arrButtons['edit']['delete_element']['ACTION_URL'];
+
+        $arResult['ADD_LINK'] = $arrButtons['edit']['add_element']['ACTION_URL'];
+        $arResult['IBLOCK_ID'] = $arParams['PRODUCTS_IBLOCK_ID'];
+
         foreach ($arField['PROPERTIES']['FIRMA']['VALUE'] as $value){
             $arClassif[$value]["PRODUCTS"][$arField["ID"]] = $arField;
         }

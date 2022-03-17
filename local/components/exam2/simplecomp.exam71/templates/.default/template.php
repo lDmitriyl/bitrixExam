@@ -19,11 +19,16 @@ echo GetMessage('FILTER_TITLE')."<a href = '{$url}'>{$url}</a>"
 
                 <?php if(count($arClassif['PRODUCTS'] > 0)) {?>
 
-                    <ul>
+                    <?php $this->AddEditAction('add_element', $arResult['ADD_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_ADD"));?>
+
+                    <ul id="<?=$this->GetEditAreaId('add_element');?>">
 
                         <?php foreach ($arClassif['PRODUCTS'] as $arProduct):?>
-
-                            <li>
+                            <?
+                            $this->AddEditAction($arClassif['ID'] . '_' . $arProduct['ID'], $arProduct['EDIT_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_EDIT"));
+                            $this->AddDeleteAction($arClassif['ID'] . '_' . $arProduct['ID'], $arProduct['DELETE_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
+                            ?>
+                            <li id="<?=$this->GetEditAreaId($arClassif['ID'] . '_' . $arProduct['ID']);?>">
                                 <?=$arProduct['NAME']?>
                                 <?=$arProduct['PROPERTIES']['PRICE']['VALUE']?>
                                 <?=$arProduct['PROPERTIES']['ARTNUMBER']['VALUE']?>
