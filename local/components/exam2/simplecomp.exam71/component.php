@@ -23,7 +23,11 @@ $arParams['PROPERTY_CODE'] = trim($arParams['PROPERTY_CODE']);
 
 global $USER;
 
-if($this->startResultCache(false, array($USER->GetGroups()))){
+$cfilter = false;
+
+if($_GET['F']) $cfilter = true;
+
+if($this->startResultCache(false, array($USER->GetGroups(), $cfilter))){
 
     $arClassif = [];
     $arClassifId = [];
@@ -64,12 +68,26 @@ if($this->startResultCache(false, array($USER->GetGroups()))){
         "CODE",
         "NAME"
     );
+
     $arFilterElems = array (
         "IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
         "CHECK_PERMISSIONS" => $arParams['CACHE_GROUPS'],
         "PROPERTY_" . $arParams['PROPERTY_CODE'] => $arClassifId,
         "ACTIVE" => "Y"
     );
+
+    if($cfilter){
+        $arFilterElems = array(
+            [
+                'LOGIC' => 'OR',
+                ['<=PROPERTY_PRICE' => 1700, 'PROPERTY_MATERIAL' => 'Дерево, ткань'],
+                ['<PROPERTY_PRICE' => 1500, 'PROPERTY_MATERIAL' => 'Металл, пластик']
+
+            ]
+        );
+
+        $this->AbortResultCache();
+    }
 
     $rsElements = CIBlockElement::GetList($arSort, $arFilterElems, false, false, $arSelectElems);
     $rsElements->SetUrlTemplates($arParams['TEMPLATE_DETAIL_URL'] . '.php');
