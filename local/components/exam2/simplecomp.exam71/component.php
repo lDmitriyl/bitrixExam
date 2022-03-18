@@ -27,6 +27,21 @@ $cfilter = false;
 
 if($_GET['F']) $cfilter = true;
 
+if($USER->IsAuthorized()){
+    $arButtons = CIBlock::GetPanelButtons($arParams['PRODUCTS_IBLOCK_ID']);
+
+    $this->AddIncludeAreaIcons(
+        array(
+            array(
+                'ID' => 'linklb',
+                'TITLE' => GetMessage("IB_IN_ADMIN"),
+                'URL' => $arButtons['submenu']['element_list']['ACTION_URL'],
+                'IN_PARAMS_MENU' => true
+            )
+        )
+    );
+}
+
 if($this->startResultCache(false, array($USER->GetGroups(), $cfilter))){
 
     $arClassif = [];
