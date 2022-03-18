@@ -41,8 +41,14 @@ if($USER->IsAuthorized()){
         )
     );
 }
+$arNavParams = [
+    "nPageSize" => $arParams['ELEMENT_PER_PAGE'],
+    "bShowAll"  => true,
+];
 
-if($this->startResultCache(false, array($USER->GetGroups(), $cfilter))){
+$arNavigation = CDBResult::GetNavParams($arNavParams);
+
+if($this->startResultCache(false, array($USER->GetGroups(), $cfilter, $arNavigation))){
 
     $arClassif = [];
     $arClassifId = [];
@@ -60,7 +66,10 @@ if($this->startResultCache(false, array($USER->GetGroups(), $cfilter))){
         "ACTIVE" => "Y"
     );
 
-    $rsElements = CIBlockElement::GetList(array(), $arFilterElems, false, false, $arSelectElems);
+    $rsElements = CIBlockElement::GetList(array(), $arFilterElems, false, $arNavParams, $arSelectElems);
+
+    $arResult['NAV_STRING'] = $rsElements->GetPageNavString(GetMessage('PAGE_TITLE'));
+
     while($arElement = $rsElements->GetNext())
     {
         $arClassif[$arElement['ID']] = $arElement;
@@ -126,6 +135,7 @@ if($this->startResultCache(false, array($USER->GetGroups(), $cfilter))){
         $arResult['IBLOCK_ID'] = $arParams['PRODUCTS_IBLOCK_ID'];
 
         foreach ($arField['PROPERTIES']['FIRMA']['VALUE'] as $value){
+            if(in_array($value, $arClassifId))
             $arClassif[$value]["PRODUCTS"][$arField["ID"]] = $arField;
         }
     }

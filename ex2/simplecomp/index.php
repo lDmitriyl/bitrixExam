@@ -13,7 +13,8 @@ $APPLICATION->SetTitle("Простой компонент");
 		"CACHE_TYPE" => "A",
 		"CACHE_TIME" => "36000000",
 		"CACHE_GROUPS" => "Y",
-		"TEMPLATE_DETAIL_URL" => "catalog_exam/#SECTION_ID#/#ELEMENT_CODE#"
+		"TEMPLATE_DETAIL_URL" => "catalog_exam/#SECTION_ID#/#ELEMENT_CODE#",
+		"ELEMENT_PER_PAGE" => "2"
 	),
 	false
 );?><br><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

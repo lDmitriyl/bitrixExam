@@ -41,4 +41,12 @@ echo GetMessage('FILTER_TITLE')."<a href = '{$url}'>{$url}</a>"
             </li>
         <?php endforeach;?>
     </ul>
+    <br>
+    ---
+    <p>
+        <b>
+            <?= GetMessage('NAVIGATION')?>
+        </b>
+    </p>
+    <?php echo $arResult['NAV_STRING']?>
 <?php }?>
