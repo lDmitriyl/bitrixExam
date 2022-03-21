@@ -6,6 +6,13 @@ $aMenuLinks = Array(
 		Array(), 
 		Array(), 
 		"" 
-	)
+	),
+    Array(
+        "Оценка-производительности",
+        "/ex2/evaluation-performance/",
+        Array(),
+        Array(),
+        ""
+    )
 );
 ?>
