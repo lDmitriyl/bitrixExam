@@ -14,9 +14,20 @@ $this->setFrameMode(true);
 ?>
 <?
 //ссылка на страницу станицу exampage 
-//$url = ...
+$param1 = 123;
+$param2 = 456;
+$sUrl = '';
+
+if($arParams['SEF_MODE'] == 'Y'){
+
+    $sUrl = $arParams['SEF_FOLDER'] .
+        str_replace('#PARAM1#', $param1, $arParams['SEF_URL_TEMPLATES']['exampage']) . '?PARAM2='. $param2;
+
+}else{
+    $sUrl = $APPLICATION->GetCurPage() . "?PARAM1=$param1&PARAM2=$param2";
+}
 ?>
-<?=GetMessage("EXAM_TEXT_LINK_CP_PHOTO")?> <a href="<?=$url?>"><?=$url?></a>
+<?=GetMessage("EXAM_TEXT_LINK_CP_PHOTO")?> <a href="<?=$sUrl?>"><?=$sUrl?></a>
 
 <?$APPLICATION->IncludeComponent(
 	"bitrix:photo.sections.top",

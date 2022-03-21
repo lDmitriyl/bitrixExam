@@ -2,7 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Комплексный компонент");
 ?><?$APPLICATION->IncludeComponent(
-	"exam2:complexcomp", 
+	"exam2:complexcomp.exam", 
 	".default", 
 	array(
 		"COMPONENT_TEMPLATE" => ".default",
