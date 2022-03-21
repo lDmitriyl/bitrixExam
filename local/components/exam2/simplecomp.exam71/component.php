@@ -48,7 +48,11 @@ $arNavParams = [
 
 $arNavigation = CDBResult::GetNavParams($arNavParams);
 
-if($this->startResultCache(false, array($USER->GetGroups(), $cfilter, $arNavigation))){
+global $CACHE_MANAGER;
+
+if($this->startResultCache(false, array($USER->GetGroups(), $cfilter, $arNavigation), "/servicesIblock")){
+
+    $CACHE_MANAGER->RegisterTag('iblock_id_3');
 
     $arClassif = [];
     $arClassifId = [];
