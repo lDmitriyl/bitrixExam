@@ -56,6 +56,17 @@ IncludeTemplateLangFile(__FILE__);
 				<tr>
 					<td id="banner-image"><div><img src="<?=SITE_TEMPLATE_PATH?>/images/head.jpg" /></div></td>
 					<td id="banner-slogan">
+                        <?$APPLICATION->IncludeComponent(
+                            "bitrix:main.include",
+                            ".default",
+                            array(
+                                "COMPONENT_TEMPLATE" => ".default",
+                                "AREA_FILE_SHOW" => "file",
+                                "PATH" => "/ex2/site2/include/motto.php",
+                                "EDIT_TEMPLATE" => ""
+                            ),
+                            false
+                        );?>
 					</td>
 				</tr>
 			</table>
@@ -71,7 +82,19 @@ IncludeTemplateLangFile(__FILE__);
 
 				</div>
 			</div>
-			
+                <div class="content-block">
+                    <div class="content-block-inner">
+                        <h3><?=GetMessage('CFT_LANG_CANGE')?></h3>
+                        <?$APPLICATION->IncludeComponent("bitrix:main.site.selector", "dropdown1", Array(
+	"CACHE_TIME" => "3600",	// Время кеширования (сек.)
+		"CACHE_TYPE" => "A",	// Тип кеширования
+		"SITE_LIST" => "",	// Список сайтов
+		"COMPONENT_TEMPLATE" => "dropdown"
+	),
+	false
+);?>
+                    </div>
+                </div>
 	
 			<div class="content-block">
 				<div class="content-block-inner">
